@@ -11,6 +11,11 @@ class Resolucao implements TextWrapInterface {
    * {@inheritdoc}
    */
   public function textWrap(string $text, int $length): array {
+
+    if($text == null || $text=="" || $text == " "){
+      return [null];
+    }
+
     $oldLength = $length;
     $newText = "";
     $textLength = strlen($text);
@@ -45,7 +50,12 @@ class Resolucao implements TextWrapInterface {
         // echo "<p> line+word: ".strlen($line." ".$word)."| oldlength: ".$oldLength." </p>";
         if(strlen($line." ".$word) <= $oldLength){
           // echo "<p> préWord: ".$line;
-          $line = $line." ".$word;
+          if(strlen($line) > 0){
+            $line = $line." ".$word;
+          }else{
+            $line = $word;
+          }
+          
           // echo " | posWord: ".$line."</p>";
 
         }else{
@@ -63,9 +73,9 @@ class Resolucao implements TextWrapInterface {
       $newText = $newText.$line;
     }
     // echo "<br><br> newText <br><br>";
-    // echo nl2br($newText);
-
+    echo nl2br($newText);
     $textArray = explode ("\n", $newText);
+    
     return $textArray;
   }
 
