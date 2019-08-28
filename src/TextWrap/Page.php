@@ -10,10 +10,8 @@ class Page
         echo '<body bgcolor="black" />
         <font color="white">';
 
-        // $text = $_GET['text'];
         $this->resolucao = new Resolucao();
-        // echo $this->resolucao->textWrap($text, 50)[0][1];
-        $this->resolucao->textWrap("a bbb cccc ddddd eeeeee ffffffff ggggggggggg hhhhhhhhhhhhh iiiiiiiiiiiiiiiiii jjjjjjjjjjjjjjjjjj", 25);
+        $this->resolucao->textWrap("a bbb cccc ddddd eeeeee ffffffff ggggggggggg hhhhhhhhhhhhh iiiiiiiiiiiiiiiiii jjjjjjjjjjjjjjjjjj ggggggggggg ddddd hhhhhhhhhhhhh", 5);
 
         echo '</font>';
     }
