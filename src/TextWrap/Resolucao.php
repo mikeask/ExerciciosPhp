@@ -15,42 +15,58 @@ class Resolucao implements TextWrapInterface {
     $newText = "";
     $textLength = strlen($text);
 
-    echo "Texto: \t".$text."\n Tamanho: ".$textLength;
-    echo "<br>";
+    // echo "Texto: \t".$text."\n Tamanho: ".$textLength;
+    // echo "<br>";
 
     $textArray = explode (" ", $text);
     $line = "";
 
     foreach ($textArray as &$word) {                    //percorre a lista de palavras
+      // echo "word: ".$word;
       if(strlen($word) > $oldLength){                   //se a palavra couber em uma linha
-        $chars = str_split($word);                      //transforma a string $word em um array de chars $chars
+        if(strlen($line) > 0){
+          $line = $line."\n";                         //quebra linha
+          $newText = $newText.$line;                  //coloca a linha com a quebra no texto
+          $line = "";                                 //limpa a linha para começar uma nova
+        }
+        $chars = str_split($word);                     //transforma a string $word em um array de chars $chars
         foreach($chars as $char){                       //percorre o array de chars $chars
-          if(strlen($line) <= $oldLength){              //se a linha atual tiver seu tamanho menor que o máximo
+          if(strlen($line) < $oldLength){              //se a linha atual tiver seu tamanho menor que o máximo
             $line = $line.$char;                        //adiciona o char na linha
           }else{                                        //se a linha tiver um tamanho maior que o máximo
             $line = $line."\n";                         //quebra linha
-            echo "<p> worldLine: ".$line."\n </p>";
+            // echo "<p> worldLine: ".$line."\n </p>";
             $newText = $newText.$line;                 //coloca a linha com a quebra no texto
             $line = "";                                 //limpa a linha para começar uma nova
             $line = $line.$char;                        //adiciona o caractere que não coube na outra linha na nova
           }
         }
       }else{
+        // echo "<p> line+word: ".strlen($line." ".$word)."| oldlength: ".$oldLength." </p>";
         if(strlen($line." ".$word) <= $oldLength){
+          // echo "<p> préWord: ".$line;
           $line = $line." ".$word;
+          // echo " | posWord: ".$line."</p>";
+
         }else{
           $line = $line."\n";
-          echo "<p> line: ".$line."\n </p>";
+          // echo "<p> lineAdd: ".$line."\n </p>";
           $newText = $newText.$line;
           $line = "";
+          $line = $line.$word;
+          
         }
       }
+ 
     }
+    if(strlen($line)>0){
+      $newText = $newText.$line;
+    }
+    // echo "<br><br> newText <br><br>";
+    // echo nl2br($newText);
 
-    echo "<br><br> newText <br><br>";
-    echo nl2br($newText);
-
-    return [$newText];
+    $textArray = explode ("\n", $newText);
+    return $textArray;
   }
 
 }

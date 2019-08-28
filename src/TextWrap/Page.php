@@ -11,7 +11,7 @@ class Page
         <font color="white">';
 
         $this->resolucao = new Resolucao();
-        $this->resolucao->textWrap("a bbb cccc ddddd eeeeee ffffffff ggggggggggg hhhhhhhhhhhhh iiiiiiiiiiiiiiiiii jjjjjjjjjjjjjjjjjj ggggggggggg ddddd hhhhhhhhhhhhh", 5);
+        $this->resolucao->textWrap(" a Se vi mais longe foi por estar de pé sobre ombros de gigantes uashuahsuahsuahsuahsaushuahsuhuahash", 12);
 
         echo '</font>';
     }
