@@ -18,6 +18,7 @@ class TextWrapTest extends TestCase {
   public function setUp() {
     $this->resolucao = new Resolucao();
     $this->baseString = "Se vi mais longe foi por estar de pé sobre ombros de gigantes";
+    $this->spaceString = "Se  vi    mais longe  foi   por  estar   de pé  sobre   ombros  de  gigantes";
   }
 
   /**
@@ -38,6 +39,26 @@ class TextWrapTest extends TestCase {
    */
   public function testForSmallWords() {
     $ret = $this->resolucao->textWrap($this->baseString, 8);
+    $this->assertCount(10, $ret);
+    $this->assertEquals("Se vi", $ret[0]);
+    $this->assertEquals("mais", $ret[1]);
+    $this->assertEquals("longe", $ret[2]);
+    $this->assertEquals("foi por", $ret[3]);
+    $this->assertEquals("estar de", $ret[4]);
+    $this->assertEquals("pé", $ret[5]);
+    $this->assertEquals("sobre", $ret[6]);
+    $this->assertEquals("ombros", $ret[7]);
+    $this->assertEquals("de", $ret[8]);
+    $this->assertEquals("gigantes", $ret[9]);
+  }
+
+    /**
+   * Testa se a aplicação consegue lidar corretamente com mais de 1 espaço (space)
+   *
+   * @covers Galoa\ExerciciosPhp\TextWrap\Resolucao::textWrap
+   */
+  public function testForSpaces() {
+    $ret = $this->resolucao->textWrap($this->spaceString, 8);
     $this->assertCount(10, $ret);
     $this->assertEquals("Se vi", $ret[0]);
     $this->assertEquals("mais", $ret[1]);

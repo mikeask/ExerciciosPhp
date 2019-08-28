@@ -19,9 +19,12 @@ class Resolucao implements TextWrapInterface {
     $newText = "";
 
     $textArray = explode (" ", $text);             //separa a string $text por espaço " ", salvando as palavras em um array de strings      
+    
+    
     $line = "";
 
     foreach ($textArray as &$word) {               //percorre a lista de palavras
+      str_replace(" ", "", $word);
       if(strlen($word) > $length){                  //se a palavra couber em uma linha
         if(strlen($line) > 0){                          //se a linha tiver algum conteudo
           $line = $line."\n";                            //quebra linha
