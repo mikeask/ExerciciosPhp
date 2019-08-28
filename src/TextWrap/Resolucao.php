@@ -25,14 +25,6 @@ class Resolucao implements TextWrapInterface {
     
     $line = "";
 
-    for($i=0;$i<strlen($text);$i++){
-      if($text[$i]==" "){
-        if($text[$i+1]==" "){
-          
-        }
-      }
-    }
-
     foreach ($textArray as &$word) {               //percorre a lista de palavras
       echo ".".$word;
       if(strlen($word) > $length){                  //se a palavra couber em uma linha
